@@ -1,17 +1,20 @@
 #Based on ubiquity ROS image - https://downloads.ubiquityrobotics.com/pi.html
 
+#vnc and display
+sudo apt update 
+Xvfb ':1' -screen 0 '1280x1024x24' &
+x11vnc -rfbport 5901 -display ':1' -auth /var/run/slim.auth  -o /dev/stdout -noipv6 -bg -forever -N > /tmp/vnc.log
+export DISPLAY=:1
+
 # rplidar + hector - https://blog.csdn.net/EAIBOT/article/details/51044718
 # cartographer     - https://xrp001.github.io/tutorial/2018/05/18/Jetson-tx2-rplidar-a2-cartographer/
-sudo apt-get install ros-kinetic-rplidar-ros ros-kinetic-hector-slam ros-kinetic-cartographer ros-kinetic-cartographer-ros ros-kinetic-cartographer-ros-msgs ros-kinetic-cartographer-rviz
+sudo apt install ros-kinetic-rplidar-ros ros-kinetic-hector-slam ros-kinetic-cartographer ros-kinetic-cartographer-ros ros-kinetic-cartographer-ros-msgs ros-kinetic-cartographer-rviz
 sudo cp rplidar.launch /opt/ros/kinetic/share/rplidar_ros/launch/rplidar.launch
 sudo cp hector_mapping_demo.launch /opt/ros/kinetic/share/rplidar_ros/launch/hector_mapping_demo.launch
 sudo cp revo_lds.lua /opt/ros/kinetic/share/cartographer_ros/configuration_files/revo_lds.lua
 sudo cp demo_revo_lds.launch /opt/ros/kinetic/share/cartographer_ros/launch/demo_revo_lds.launch
 
 sudo chmod 666 /dev/ttyUSB1
-Xvfb ':1' -screen 0 '1280x1024x24' &
-x11vnc -rfbport 5901 -display ':1' -auth /var/run/slim.auth  -o /dev/stdout -noipv6 -bg -forever -N > /tmp/vnc.log
-export DISPLAY=:1
 
 roslaunch rplidar_ros view_rplidar.launch
 roslaunch rplidar_ros rplidar.launch &
@@ -51,4 +54,30 @@ rosrun mavros mavsafety disarm
 rosrun mavros mavsafety arm 
 
 # ap navigation - http://ardupilot.org/dev/docs/ros-object-avoidance.html
-# TBD...
+sudo apt install ros-kinetic-navigation ros-kinetic-roslaunch ros-kinetic-catkin
+sudo cp node.launch /opt/ros/kinetic/share/mavros/launch/node.launch
+
+cd ~/catkin_ws/src
+wget https://github.com/ArduPilot/companion/raw/master/Common/ROS/ap_navigation.zip
+unzip ap_navigation.zip
+
+cd ~/catkin_ws
+sudo su
+catkin_make install -DCMAKE_INSTALL_PREFIX=/opt/ros/kinetic
+cp -rfv /home/ubuntu/catkin_ws/src/ap_navigation/* /opt/ros/kinetic/share/ap_navigation/
+exit
+source /opt/ros/kinetic/setup.bash
+
+# Open all
+# Arm the vehicle and switch to Guided mode
+# Use rviz’s “2D Nav Goal” button to set a position target. If all goes well a green line will appearing showing the route the vehicle will take to the target
+export DISPLAY=:1
+sudo chmod 666 /dev/ttyUSB0
+sudo chmod 666 /dev/ttyUSB1
+roslaunch mavros apm.launch fcu_url:=/dev/ttyUSB0:9600
+roslaunch rplidar_ros rplidar.launch &
+roslaunch cartographer_ros demo_revo_lds.launch
+roslaunch ap_navigation ap_nav.launch
+
+
+# TBD: change to HDMI display
