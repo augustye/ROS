@@ -3,11 +3,12 @@
 # rplidar + hector - https://blog.csdn.net/EAIBOT/article/details/51044718
 # cartographer     - https://xrp001.github.io/tutorial/2018/05/18/Jetson-tx2-rplidar-a2-cartographer/
 sudo apt-get install ros-kinetic-rplidar-ros ros-kinetic-hector-slam ros-kinetic-cartographer ros-kinetic-cartographer-ros ros-kinetic-cartographer-ros-msgs ros-kinetic-cartographer-rviz
+sudo cp rplidar.launch /opt/ros/kinetic/share/rplidar_ros/launch/rplidar.launch
 sudo cp hector_mapping_demo.launch /opt/ros/kinetic/share/rplidar_ros/launch/hector_mapping_demo.launch
 sudo cp revo_lds.lua /opt/ros/kinetic/share/cartographer_ros/configuration_files/revo_lds.lua
 sudo cp demo_revo_lds.launch /opt/ros/kinetic/share/cartographer_ros/launch/demo_revo_lds.launch
 
-sudo chmod 666 /dev/ttyUSB0
+sudo chmod 666 /dev/ttyUSB1
 Xvfb ':1' -screen 0 '1280x1024x24' &
 x11vnc -rfbport 5901 -display ':1' -auth /var/run/slim.auth  -o /dev/stdout -noipv6 -bg -forever -N > /tmp/vnc.log
 export DISPLAY=:1
