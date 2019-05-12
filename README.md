@@ -3,7 +3,7 @@
 
 1. 硬件配置:
     - 树莓派3B及有线网络 (无需屏幕)
-    - rplidar激光雷达和pix (均通过UART或USB转UART连接到树莓派)
+    - PIX + RPLIDAR激光雷达 (均通过UART或USB转UART连接到树莓派)
     - 笔记本电脑 + Ubuntu系统 (用于X-forwarding，接收树莓派发送的图形界面)
 
 2. ROS Image下载:
@@ -11,7 +11,7 @@
     - 下载最新的Imag: 2019-02-19-ubiquity-xenial-lxde
     - 烧录image到SD后，从SD卡启动树莓派
 
-3. 进入笔记本电脑的Ubuntu系统，使用SSH + X-Forwarding登录树莓派:
+3. 进入笔记本电脑的Ubuntu系统，使用SSH + X-Forwarding连接树莓派:
     ```Bash
     ssh -X ubuntu@ubiquityrobot.local 
     ```
@@ -55,7 +55,7 @@
         ```Bash
         sudo vi /opt/ros/kinetic/share/rplidar_ros/launch/rplidar.launch
         ```
-       - 本例中使用默认值 /dev/ttyUSB0
+       本例中使用默认值 /dev/ttyUSB0
     - 启动雷达: 
         ```Bash
         roslaunch rplidar_ros rplidar.launch &
@@ -82,7 +82,7 @@
         ```Bash
         sudo apt install ros-kinetic-cartographer ros-kinetic-cartographer-ros ros-kinetic-cartographer-ros-msgs ros-kinetic-cartographer-rviz
         ```
-    - 拷贝配置文件
+    - 拷贝修改过的配置文件
         ```Bash
         sudo cp /home/ubuntu/ROS/revo_lds.lua /opt/ros/kinetic/share/cartographer_ros/configuration_files/revo_lds.lua
         sudo cp /home/ubuntu/ROS/demo_revo_lds.launch /opt/ros/kinetic/share/cartographer_ros/launch/demo_revo_lds.launch
