@@ -59,7 +59,7 @@
         [ INFO] [1557589070.664370783]: Hardware Rev: 5
         [ INFO] [1557589070.667883428]: RPLidar health status : 0
         [ INFO] [1557589071.230467999]: current scan mode: Standard, max_distance: 12.0 m, Point number: 2.0K , angle_compensate: 1
-     ```
+        ```
     - 查看激光雷达数据: rosrun rplidar_ros rplidarNodeClient
     - 查看激光雷达图: roslaunch rplidar_ros view_rplidar.launch
 
@@ -73,5 +73,11 @@
         sudo cp /home/ubuntu/ROS/demo_revo_lds.launch /opt/ros/kinetic/share/cartographer_ros/launch/demo_revo_lds.launch
         ```
     - 运行: 
-        - 确定已启动激光雷达: roslaunch rplidar_ros rplidar.launch &
-        - 运行: roslaunch cartographer_ros demo_revo_lds.launch
+        - 确定已启动激光雷达: 
+            ```Bash
+            roslaunch rplidar_ros rplidar.launch &
+            ```
+        - 运行: 
+            ```Bash
+            roslaunch cartographer_ros demo_revo_lds.launch
+            ```
