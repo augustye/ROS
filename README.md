@@ -120,7 +120,7 @@
         roslaunch mavros apm.launch fcu_url:=/dev/ttyUSB1:9600
         ```
         - 此处ttyUSB1是pix所连接的串口, 9600是mavlink的波特率。
-        - pix地面站也需要做相应设置: 将对应接口的mavlink波特率设为9600，且将mavlink版本设置为v1。
+        - pix本身也需要通过地面站做相应设置: 将对应接口的mavlink波特率设为9600，且将mavlink版本设置为v1。
   
      - 通过mavros与pix通信(读写参数):
         - 打开一个新的ssh窗口, 运行:
