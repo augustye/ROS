@@ -12,9 +12,12 @@
     - 烧录image到SD后，从SD卡启动树莓派
 
 3. 进入笔记本电脑的Ubuntu系统，使用SSH + X-Forwarding登录树莓派:
-    - 命令: ssh -X ubuntu@ubiquityrobot.local 
+    ```Bash
+    ssh -X ubuntu@ubiquityrobot.local 
+    ```
     - 密码: ubuntu
-    - 登录地址可以使用ubiquityrobot.local或者局域网ip地址，登录之后在树莓派上继续以下流程
+    - 登录地址可以使用ubiquityrobot.local或者局域网ip地址
+    - 登录之后在树莓派上继续以下流程
 
 4. 从github下载配置文件备用：
     ```Bash
@@ -32,10 +35,11 @@
         ```
 
 6. 检查pix和rplidar的连接
-    - 确认相应的tty端口存在，在本例中rplidar和pix均通过USB转UART连接到树莓派，rplidar是ttyUSB0, pix是ttyUSB1
+    - 确认相应的tty端口存在
         ```Bash
         ls /dev/tty*
         ``` 
+    - 在本例中rplidar和pix均通过USB转UART连接到树莓派，rplidar是ttyUSB0, pix是ttyUSB1
     - 修改串口权限:
         ```Bash
         sudo chmod 666 /dev/ttyUSB0
@@ -43,11 +47,14 @@
         ```
 
 7. 安装测试rplidar激光雷达驱动
-    - 运行: 
+    - 安装驱动: 
         ```Bash
         sudo apt install ros-kinetic-rplidar-ros 
         ```
-    - 根据具体接线修改这个配置文件中的串口名称: /opt/ros/kinetic/share/rplidar_ros/launch/rplidar.launch
+    - 根据硬件连接修改这个配置文件中的串口名称: 
+        ```Bash
+        sudo vi /opt/ros/kinetic/share/rplidar_ros/launch/rplidar.launch
+        ```
        - 本例中使用默认值 /dev/ttyUSB0
     - 启动雷达: 
         ```Bash
@@ -60,13 +67,21 @@
         [ INFO] [1557589070.667883428]: RPLidar health status : 0
         [ INFO] [1557589071.230467999]: current scan mode: Standard, max_distance: 12.0 m, Point number: 2.0K , angle_compensate: 1
         ```
-    - 查看激光雷达数据: rosrun rplidar_ros rplidarNodeClient
-    - 查看激光雷达图: roslaunch rplidar_ros view_rplidar.launch
+    - 查看激光雷达数据流:
+        ```Bash
+        rosrun rplidar_ros rplidarNodeClient
+        ```
+    - 查看激光雷达图: 
+        ```Bash
+        roslaunch rplidar_ros view_rplidar.launch
+        ```
+        图像会通过X-Forwarding显示在笔记本电脑上
 
 6. 安装测试cartographer
-    ```Bash
-    sudo apt install ros-kinetic-cartographer ros-kinetic-cartographer-ros ros-kinetic-cartographer-ros-msgs ros-kinetic-cartographer-rviz
-    ```
+    - 安装
+        ```Bash
+        sudo apt install ros-kinetic-cartographer ros-kinetic-cartographer-ros ros-kinetic-cartographer-ros-msgs ros-kinetic-cartographer-rviz
+        ```
     - 修改配置文件
         ```Bash
         sudo cp /home/ubuntu/ROS/revo_lds.lua /opt/ros/kinetic/share/cartographer_ros/configuration_files/revo_lds.lua
@@ -77,7 +92,7 @@
             ```Bash
             roslaunch rplidar_ros rplidar.launch &
             ```
-        - 运行: 
+        - 运行cartographer绘制地图: 
             ```Bash
             roslaunch cartographer_ros demo_revo_lds.launch
             ```
