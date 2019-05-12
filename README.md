@@ -77,7 +77,8 @@
         ```Bash
         roslaunch rplidar_ros view_rplidar.launch
         ```
-        图像会通过X-Forwarding显示在笔记本电脑上
+        - 图像会通过X-Forwarding显示在笔记本电脑上。
+        - 使用X-Forwarding的好处是，三维图像的渲染由笔记本而不是树莓派来完成，可以节省树莓派的CPU资源。
 
 8. 安装测试cartographer
     - 安装
