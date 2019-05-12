@@ -99,7 +99,7 @@
         roslaunch cartographer_ros demo_revo_lds.launch
         ```
 9. ROS与pix通信
-    - 安装marvros
+    - 安装mavros
         ```Bash
         sudo apt install ros-kinetic-mavros ros-kinetic-mavros-extras ros-kinetic-rqt ros-kinetic-rqt-common-plugins ros-kinetic-rqt-robot-plugins python-future python-lxml
         wget https://raw.githubusercontent.com/mavlink/mavros/master/mavros/scripts/install_geographiclib_datasets.sh
@@ -111,4 +111,18 @@
         sudo vi /opt/ros/kinetic/share/mavros/launch/apm_config.yaml 
         ```
         该文件第103行有一个格式缩进的错误，手动修复缩进即可
+    - 运行mavros
+        ```Bash
+        roslaunch mavros apm.launch fcu_url:=/dev/ttyUSB1:9600
+        ```
+        - 此处ttyUSB1是pix所连接的串口, 9600是mavlink的波特率。
+        - pix地面站也需要做相应设置: 将对应接口的mavlink波特率设为9600，且将mavlink版本设置为v1。
+  
+     - 通过mavros与pix通信(读写参数):
+        ```Bash
+        rosrun mavros mavparam set ARMING_CHECK 0
+        rosrun mavros mavparam get ARMING_CHECK
+        rosrun mavros mavsafety disarm 
+        rosrun mavros mavsafety arm        
+        ```
     
