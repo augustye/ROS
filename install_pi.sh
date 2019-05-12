@@ -1,21 +1,4 @@
 
-# mavros - http://ardupilot.org/dev/docs/ros-install.html#installing-mavros
-#        - http://ardupilot.org/dev/docs/ros-connecting.html
-sudo apt install ros-kinetic-mavros ros-kinetic-mavros-extras ros-kinetic-rqt ros-kinetic-rqt-common-plugins ros-kinetic-rqt-robot-plugins python-future python-lxml
-sudo pip install pymavlink mavproxy
-wget https://raw.githubusercontent.com/mavlink/mavros/master/mavros/scripts/install_geographiclib_datasets.sh
-chmod a+x install_geographiclib_datasets.sh
-./install_geographiclib_datasets.sh
-
-#fix indent error on line 103 in: /opt/ros/kinetic/share/mavros/launch/apm_config.yaml
-sudo vi /opt/ros/kinetic/share/mavros/launch/apm_config.yaml 
-
-roslaunch mavros apm.launch fcu_url:=/dev/ttyUSB1:9600
-rosrun mavros mavparam set ARMING_CHECK 0
-rosrun mavros mavparam get ARMING_CHECK
-rosrun mavros mavsafety disarm 
-rosrun mavros mavsafety arm 
-
 # ap navigation - http://ardupilot.org/dev/docs/ros-object-avoidance.html
 sudo apt install ros-kinetic-navigation ros-kinetic-roslaunch ros-kinetic-catkin
 sudo cp node.launch /opt/ros/kinetic/share/mavros/launch/node.launch
