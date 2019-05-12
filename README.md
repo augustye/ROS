@@ -136,7 +136,6 @@
         - http://ardupilot.org/dev/docs/ros-connecting.html
      
 10. ROS避障  
-    - 参考: http://ardupilot.org/dev/docs/ros-object-avoidance.html
     - 安装ap_navigation:
         ```Bash
         sudo apt install ros-kinetic-navigation ros-kinetic-roslaunch ros-kinetic-catkin
@@ -156,7 +155,7 @@
         ```Bash
         sudo cp /home/ubuntu/ROS/node.launch /opt/ros/kinetic/share/mavros/launch/node.launch
         ```
-    - 运行:
+    - 运行: 
         - 树莓派: 同时运行上述步骤安装的几个程序
             ```Bash
             sudo chmod 666 /dev/ttyUSB0
@@ -168,6 +167,6 @@
             ```
         - pix: 切换到arm + guided模式
         - 笔记本电脑: 在打开的rviz界面中使用2D Nav Goal设置目标位置
-        - 最终效果: 应该有一条绿线显示到达目标位置的规划路线 (暂未成功)
-
-        
+        - 最终效果: 应该有一条绿线显示到达目标位置的规划路线 (待验证)
+    - 参考资料: 
+        - http://ardupilot.org/dev/docs/ros-object-avoidance.html
