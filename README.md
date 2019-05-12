@@ -8,7 +8,7 @@
 
 2. ROS Image下载:
     - 访问 https://downloads.ubiquityrobotics.com/pi.html 
-    - 下载最新的Imag: 2019-02-19-ubiquity-xenial-lxde
+    - 下载最新的Image: 2019-02-19-ubiquity-xenial-lxde
     - 烧录image到SD后，从SD卡启动树莓派
 
 3. 进入笔记本电脑的Ubuntu系统，使用SSH + X-Forwarding连接树莓派:
