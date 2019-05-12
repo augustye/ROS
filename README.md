@@ -123,10 +123,11 @@
         - pix地面站也需要做相应设置: 将对应接口的mavlink波特率设为9600，且将mavlink版本设置为v1。
   
      - 通过mavros与pix通信(读写参数):
-        ```Bash
-        rosrun mavros mavparam set ARMING_CHECK 0
-        rosrun mavros mavparam get ARMING_CHECK
-        rosrun mavros mavsafety disarm 
-        rosrun mavros mavsafety arm        
-        ```
+        - 打开一个新的ssh窗口, 运行:
+            ```Bash
+            rosrun mavros mavparam set ARMING_CHECK 0
+            rosrun mavros mavparam get ARMING_CHECK
+            rosrun mavros mavsafety disarm 
+            rosrun mavros mavsafety arm        
+            ```
     
