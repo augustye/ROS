@@ -102,8 +102,13 @@
     - 安装marvros
         ```Bash
         sudo apt install ros-kinetic-mavros ros-kinetic-mavros-extras ros-kinetic-rqt ros-kinetic-rqt-common-plugins ros-kinetic-rqt-robot-plugins python-future python-lxml
-        sudo pip install pymavlink mavproxy
         wget https://raw.githubusercontent.com/mavlink/mavros/master/mavros/scripts/install_geographiclib_datasets.sh
         chmod a+x install_geographiclib_datasets.sh
-        ./install_geographiclib_datasets.sh
+        sudo ./install_geographiclib_datasets.sh
         ```
+    - 修复配置文件
+        ```Bash
+        sudo vi /opt/ros/kinetic/share/mavros/launch/apm_config.yaml 
+        ```
+        该文件第103行有一个格式缩进的错误，手动修复缩进即可
+    
