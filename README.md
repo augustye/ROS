@@ -2,9 +2,9 @@
 ================
 
 1. 硬件配置:
-    - 树莓派3B及有线网络 (无需屏幕)
-    - PIX + RPLIDAR激光雷达 (均通过串口, 或USB转串口连接到树莓派)
-    - 笔记本电脑 + Ubuntu系统 (用于X-forwarding, 接收树莓派发送的图形界面。使用X-Forwarding的好处是，三维地图的实际渲染由PC而不是树莓派来完成，可以节省很多树莓派的CPU资源)
+    - 树莓派3B：本例中直接连接到有线网络，无需屏幕。如果没有有线网络，也可用鼠标键盘和屏幕来完成无线网联网操作。
+    - PIX和RPLIDAR激光雷达: 均通过串口, 或USB转串口连接到树莓派。
+    - 笔记本电脑+Ubuntu系统: 用于X-forwarding, 接收树莓派发送的图形界面。使用X-Forwarding的好处是，三维地图的实际渲染由PC而不是树莓派来完成，可以节省很多树莓派的CPU资源。
 
 2. ROS Image下载:
     - 访问 https://downloads.ubiquityrobotics.com/pi.html 
