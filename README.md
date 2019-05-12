@@ -3,8 +3,8 @@
 
 1. 硬件配置:
     - 树莓派3B及有线网络 (无需屏幕)
-    - PIX + RPLIDAR激光雷达 (均通过UART或USB转UART连接到树莓派)
-    - 笔记本电脑 + Ubuntu系统 (用于X-forwarding，接收树莓派发送的图形界面)
+    - PIX + RPLIDAR激光雷达 (均通过串口, 或USB转串口连接到树莓派)
+    - 笔记本电脑 + Ubuntu系统 (用于X-forwarding, 接收树莓派发送的图形界面)
 
 2. ROS Image下载:
     - 访问 https://downloads.ubiquityrobotics.com/pi.html 
@@ -15,7 +15,7 @@
     ```Bash
     ssh -X ubuntu@ubiquityrobot.local 
     ```
-    - 登录地址: ubiquityrobot.local或者局域网ip地址
+    - 登录地址: ubiquityrobot.local或者树莓派的局域网ip地址
     - 登录密码: ubuntu
     - 登录之后在树莓派上继续以下流程
 
@@ -33,7 +33,10 @@
         deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu-ports/ xenial-updates main multiverse restricted universe
         deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu-ports/ xenial-backports main multiverse restricted universe
         ```
-
+    - 更新apt信息
+        ```Bash
+        sudo apt update
+        ``` 
 6. 检查pix和rplidar的连接
     - 确认相应的tty端口存在
         ```Bash
