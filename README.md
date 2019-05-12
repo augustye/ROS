@@ -120,7 +120,7 @@
         roslaunch mavros apm.launch fcu_url:=/dev/ttyUSB1:9600
         ```
         - 此处ttyUSB1是pix所连接的串口, 9600是mavlink的波特率。
-        - pix地面站也需要做相应设置: 将对应接口的mavlink波特率设为9600，且将mavlink版本设置为v1。
+        - pix本身也需要通过地面站做相应设置: 将对应接口的mavlink波特率设为9600，且将mavlink版本设置为v1。
   
      - 通过mavros与pix通信(读写参数):
         - 打开一个新的ssh窗口, 运行:
@@ -135,3 +135,39 @@
         - http://ardupilot.org/dev/docs/ros-install.html#installing-mavros
         - http://ardupilot.org/dev/docs/ros-connecting.html
      
+10. ROS避障  
+    - 参考: http://ardupilot.org/dev/docs/ros-object-avoidance.html
+    - 安装ap_navigation:
+        ```Bash
+        sudo apt install ros-kinetic-navigation ros-kinetic-roslaunch ros-kinetic-catkin
+
+        cd ~/catkin_ws/src
+        wget https://github.com/ArduPilot/companion/raw/master/Common/ROS/ap_navigation.zip
+        unzip ap_navigation.zip
+
+        cd ~/catkin_ws
+        sudo su
+        catkin_make install -DCMAKE_INSTALL_PREFIX=/opt/ros/kinetic
+        cp -rfv /home/ubuntu/catkin_ws/src/ap_navigation/* /opt/ros/kinetic/share/ap_navigation/
+        exit
+        source /opt/ros/kinetic/setup.bash
+        ```
+    - 拷贝修改过的配置文件
+        ```Bash
+        sudo cp /home/ubuntu/ROS/node.launch /opt/ros/kinetic/share/mavros/launch/node.launch
+        ```
+    - 运行:
+        - 树莓派: 同时运行上述步骤安装的几个程序
+            ```Bash
+            sudo chmod 666 /dev/ttyUSB0
+            sudo chmod 666 /dev/ttyUSB1
+            roslaunch mavros apm.launch fcu_url:=/dev/ttyUSB1:9600
+            roslaunch rplidar_ros rplidar.launch &
+            roslaunch cartographer_ros demo_revo_lds.launch
+            roslaunch ap_navigation ap_nav.launch
+            ```
+        - pix: 切换到arm + guided模式
+        - 笔记本电脑: 在打开的rviz界面中使用2D Nav Goal设置目标位置
+        - 最终效果: 应该有一条绿线显示到达目标位置的规划路线 (暂未成功)
+
+        
