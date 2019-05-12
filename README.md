@@ -154,6 +154,7 @@
     - 拷贝修改过的配置文件
         ```Bash
         sudo cp /home/ubuntu/ROS/node.launch /opt/ros/kinetic/share/mavros/launch/node.launch
+        sudo cp /home/ubuntu/ROS/ap_nav.launch /opt/ros/kinetic/share/ap_navigation/launch/ap_nav.launch 
         ```
     - 运行: 
         - 树莓派: 同时运行上述步骤安装的几个程序
