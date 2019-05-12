@@ -18,10 +18,12 @@
     git clone https://github.com/augustye/ROS
 
 5. 更改apt源为清华源。修改 /etc/apt/sources.list 为以下内容:
+```
     deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu-ports/ xenial main multiverse restricted universe
     deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu-ports/ xenial-security main multiverse restricted universe
     deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu-ports/ xenial-updates main multiverse restricted universe
     deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu-ports/ xenial-backports main multiverse restricted universe
+```
 
 6. 检查pix和rplidar的连接
     - 命令: ls /dev/tty*
