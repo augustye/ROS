@@ -130,4 +130,8 @@
             rosrun mavros mavsafety disarm 
             rosrun mavros mavsafety arm        
             ```
-    
+        - 通信有可能有不稳定的情况，如果出现运行失败，可以重试几次看看
+     - 参考资料:
+        - http://ardupilot.org/dev/docs/ros-install.html#installing-mavros
+        - http://ardupilot.org/dev/docs/ros-connecting.html
+     
