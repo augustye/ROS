@@ -80,7 +80,7 @@
         ```
         图像会通过X-Forwarding显示在笔记本电脑上
 
-6. 安装测试cartographer
+8. 安装测试cartographer
     - 安装
         ```Bash
         sudo apt install ros-kinetic-cartographer ros-kinetic-cartographer-ros ros-kinetic-cartographer-ros-msgs ros-kinetic-cartographer-rviz
@@ -97,4 +97,13 @@
     - 运行cartographer绘制地图: 
         ```Bash
         roslaunch cartographer_ros demo_revo_lds.launch
+        ```
+9. ROS与pix通信
+    - 安装marvros
+        ```Bash
+        sudo apt install ros-kinetic-mavros ros-kinetic-mavros-extras ros-kinetic-rqt ros-kinetic-rqt-common-plugins ros-kinetic-rqt-robot-plugins python-future python-lxml
+        sudo pip install pymavlink mavproxy
+        wget https://raw.githubusercontent.com/mavlink/mavros/master/mavros/scripts/install_geographiclib_datasets.sh
+        chmod a+x install_geographiclib_datasets.sh
+        ./install_geographiclib_datasets.sh
         ```
