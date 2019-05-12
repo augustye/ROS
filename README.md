@@ -43,11 +43,6 @@
         ls /dev/tty*
         ``` 
     - 在本例中rplidar和pix均通过USB转UART连接到树莓派，rplidar是ttyUSB0, pix是ttyUSB1
-    - 修改串口权限:
-        ```Bash
-        sudo chmod 666 /dev/ttyUSB0
-        sudo chmod 666 /dev/ttyUSB1
-        ```
 
 7. 安装测试rplidar激光雷达驱动
     - 安装驱动: 
@@ -59,6 +54,10 @@
         sudo vi /opt/ros/kinetic/share/rplidar_ros/launch/rplidar.launch
         ```
        本例中使用默认值 /dev/ttyUSB0
+    - 修改串口权限:
+        ```Bash
+        sudo chmod 666 /dev/ttyUSB0
+        ```
     - 启动雷达: 
         ```Bash
         roslaunch rplidar_ros rplidar.launch &
@@ -110,7 +109,12 @@
         ```Bash
         sudo vi /opt/ros/kinetic/share/mavros/launch/apm_config.yaml 
         ```
-        该文件第103行有一个格式缩进的错误，手动修复缩进即可
+        - 该文件第103行有一个格式缩进的错误，手动删除setpoint_raw前面的空格即可
+    - 修改串口权限:
+        ```Bash
+        sudo chmod 666 /dev/ttyUSB1
+        ```
+        - 此处ttyUSB1是pix所连接的串口
     - 运行mavros
         ```Bash
         roslaunch mavros apm.launch fcu_url:=/dev/ttyUSB1:9600
