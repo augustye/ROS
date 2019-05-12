@@ -15,8 +15,8 @@
     ```Bash
     ssh -X ubuntu@ubiquityrobot.local 
     ```
-    - 密码: ubuntu
-    - 登录地址可以使用ubiquityrobot.local或者局域网ip地址
+    - 登录地址: ubiquityrobot.local或者局域网ip地址
+    - 登录密码: ubuntu
     - 登录之后在树莓派上继续以下流程
 
 4. 从github下载配置文件备用：
@@ -82,17 +82,16 @@
         ```Bash
         sudo apt install ros-kinetic-cartographer ros-kinetic-cartographer-ros ros-kinetic-cartographer-ros-msgs ros-kinetic-cartographer-rviz
         ```
-    - 修改配置文件
+    - 拷贝配置文件
         ```Bash
         sudo cp /home/ubuntu/ROS/revo_lds.lua /opt/ros/kinetic/share/cartographer_ros/configuration_files/revo_lds.lua
         sudo cp /home/ubuntu/ROS/demo_revo_lds.launch /opt/ros/kinetic/share/cartographer_ros/launch/demo_revo_lds.launch
         ```
-    - 运行: 
-        - 确定已启动激光雷达: 
-            ```Bash
-            roslaunch rplidar_ros rplidar.launch &
-            ```
-        - 运行cartographer绘制地图: 
-            ```Bash
-            roslaunch cartographer_ros demo_revo_lds.launch
-            ```
+    - 确定已启动激光雷达: 
+        ```Bash
+        roslaunch rplidar_ros rplidar.launch &
+        ```
+    - 运行cartographer绘制地图: 
+        ```Bash
+        roslaunch cartographer_ros demo_revo_lds.launch
+        ```
